@@ -80,17 +80,21 @@ const OrderForm = ({
         <TouchableOpacity
           style={[
             styles.createOrderButton,
-            (loading || !deliveryValidated) && { opacity: 0.6 },
+            (loading || !deliveryValidated || !quantity || !totalPrice) && {
+              opacity: 0.6,
+            },
           ]}
           onPress={handleCreateOrder}
-          disabled={loading || !deliveryValidated}
+          disabled={loading || !deliveryValidated || !quantity || !totalPrice}
         >
           <Text style={styles.createOrderButtonText}>
             {loading
               ? "Placing..."
-              : deliveryValidated
-              ? "Place Order"
-              : "Confirm Delivery Location First"}
+              : !deliveryValidated
+              ? "Confirm Delivery Location First"
+              : !quantity || !totalPrice
+              ? "Fill Required Fields"
+              : "Place Order"}
           </Text>
         </TouchableOpacity>
       </View>
@@ -195,7 +199,7 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   checkLocationButton: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#36E623",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
