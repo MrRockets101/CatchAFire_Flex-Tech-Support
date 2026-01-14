@@ -8,6 +8,7 @@
 Let `order_id`, `customer_id`, `product_name`, `quantity`, `total_price`, `order_time` be the columns of the CSV file. Create a simple PostgreSQL table with the above mentioned fields and add values manually. Validate the schema of the model - order using Pydantic and using FastAPI create a POST operation to create the order into the CSV file. Create a React Native function for the API call. Update the code in the GitHub with separated modules for frontend and backend.
 
 **Implementation:**
+
 - **Backend**: FastAPI with Pydantic validation for order schema
 - **Database**: PostgreSQL table with specified columns
 - **CSV Integration**: Real-time updates to `doordash_bulk_orders.csv`
@@ -36,6 +37,7 @@ Create a React Native page with Expo as the backend to the UI aligned to the bel
 ## Features
 
 ### ✅ Order Management
+
 - Order creation with validation
 - Auto-generated sequential order IDs
 - Dual storage (Database + CSV)
@@ -43,6 +45,7 @@ Create a React Native page with Expo as the backend to the UI aligned to the bel
 - Real-time CSV updates for 3rd party delivery
 
 ### ✅ Location-Based Delivery Validation
+
 - GPS location checking
 - 10-mile radius validation from Johannesburg CBD
 - Integrated delivery address modal
@@ -210,11 +213,15 @@ curl "http://localhost:8000/orders/"
 │   └── package.json         # Node dependencies
 ├── .github/                 # GitHub configuration
 ├── .vscode/                 # VS Code settings
+├── docs/                    # Supplementary documentation
+│   ├── CODE_CITATIONS.md    # Implementation references
+│   ├── Project-Considerations.md # Project planning docs
+│   └── Back-end-Considerations.md # Backend architecture docs
 └── README.md
 ```
 
 ## Documentation
 
-- **[Code Citations](CODE_CITATIONS.md)** - Implementation references
-- **[DoorDash Integration Setup](DoorDash-Integration-Setup.md)** - Future API integration guide
-- **[Modal Implementation Guide](Modal-Implementation-Guide.md)** - UI component documentation
+- **[Code Citations](docs/CODE_CITATIONS.md)** - Implementation references
+- **[Project Considerations](docs/Project-Considerations.md)** - Project planning and considerations
+- **[Backend Considerations](docs/Back-end-Considerations.md)** - Backend architecture and design decisions

@@ -13,7 +13,7 @@ This document outlines additional considerations for the Order Management and De
   - Integrate DoorDash API to send orders for delivery processing.
   - Handle delivery tracking and updates.
   - Ensure compatibility with South African logistics.
-- **Implementation Details**: See [DoorDash Integration Setup](DoorDash-Integration-Setup.md) for complete API integration guide.
+- **Implementation Details**: See Future Enhancements section in the main [README](../README.md) for DoorDash integration plans.
 
 ### Payment Services
 
@@ -27,13 +27,13 @@ This document outlines additional considerations for the Order Management and De
   - Backend: Use Stripe Python SDK (`pip install stripe`) and Square SDK.
   - Frontend: Use `@stripe/stripe-react-native` for React Native.
   - Add payment endpoints: e.g., `POST /payments/` for processing.
-- **Setup Instructions**: Refer to [Backend Setup](README.md#backend) for dependency installation.
+- **Setup Instructions**: Refer to [Backend Setup](../README.md#backend-setup) for dependency installation.
 
 ## Regional Targeting: South Africa
 
 ### Key Considerations
 
-- **Currency**: All transactions in ZAR. See [DoorDash Integration](DoorDash-Integration-Setup.md#api-integration-details) for currency handling.
+- **Currency**: All transactions in ZAR. See Future Enhancements in main [README](../README.md#future-enhancements) for DoorDash integration plans.
 - **Regulations**: Adhere to South African consumer protection laws ([Consumer Protection Act 68 of 2008](https://www.gov.za/documents/consumer-protection-act)), data privacy ([Protection of Personal Information Act (POPIA) 4 of 2013](https://www.gov.za/documents/protection-personal-information-act)), and financial services regulations ([Financial Sector Conduct Authority](https://www.fsca.co.za/)).
 - **Connectivity**: Optimize for 3G networks (as previously implemented with retries).
 - **Localization**:
