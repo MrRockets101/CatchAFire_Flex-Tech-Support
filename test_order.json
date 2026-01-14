@@ -1,0 +1,14 @@
+{
+  "customer_id": 1001,
+  "product_name": "Test Product",
+  "quantity": 2,
+  "total_price": 20.0,
+  "order_time": "2024-01-14T12:00:00",
+  "delivery_address": {
+    "street": "123 Main St",
+    "city": "Johannesburg",
+    "state": "Gauteng",
+    "zipCode": "2000",
+    "country": "South Africa"
+  }
+}
