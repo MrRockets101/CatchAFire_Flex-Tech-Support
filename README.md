@@ -1,6 +1,30 @@
-# CatchaFire Order Management System
+# CatchaFire Flex-Tech Support
 
-A comprehensive full-stack application for capturing customer orders, validating delivery locations, and updating CSV files in real-time for 3rd party delivery integration.
+## Proof of Concept
+
+### 1. Capture Customer Orders and Update CSV File in Real Time
+
+**Description:**
+Let `order_id`, `customer_id`, `product_name`, `quantity`, `total_price`, `order_time` be the columns of the CSV file. Create a simple PostgreSQL table with the above mentioned fields and add values manually. Validate the schema of the model - order using Pydantic and using FastAPI create a POST operation to create the order into the CSV file. Create a React Native function for the API call. Update the code in the GitHub with separated modules for frontend and backend.
+
+**Implementation:**
+- **Backend**: FastAPI with Pydantic validation for order schema
+- **Database**: PostgreSQL table with specified columns
+- **CSV Integration**: Real-time updates to `doordash_bulk_orders.csv`
+- **Frontend**: React Native app with API integration
+- **Modular Architecture**: Separated frontend and backend modules
+
+### 2. Delivery Location Validation (10-Mile Radius)
+
+**Description:**
+Based on the delivery location, if it is greater than 10 miles from the market, show a popup to alert the customer that "Delivery can't be processed for the requested location as it is greater than 10 miles from the market."
+
+Create a React Native page with Expo as the backend to the UI aligned to the below image. If the user's selected location is greater than 10 miles from the market, prevent order processing and display the alert.
+
+**Note:** DoorDash is not sharing the API with external organizations. They provide an option called "bulk order" and a table exists with columns such as product, quantity, delivery location and phone number. We need to update that CSV file in an automated fashion at specific intervals.
+
+**UI Reference:**
+![Delivery Address Modal](frontend/assets/Add-Delivery-Address-Modal-example.png)
 
 ## Tech Stack
 
@@ -9,27 +33,22 @@ A comprehensive full-stack application for capturing customer orders, validating
 - **Database**: PostgreSQL for order storage
 - **File Storage**: CSV files for 3rd party delivery integration
 
-## Current Implementation (Tasks 1 & 2)
+## Features
 
-### ✅ Task 1: Order Capture & CSV Updates
+### ✅ Order Management
+- Order creation with validation
+- Auto-generated sequential order IDs
+- Dual storage (Database + CSV)
+- Database fallback to CSV-only operation
+- Real-time CSV updates for 3rd party delivery
 
-- **Order Creation**: Users create orders through React Native form
-- **Auto-generated Order IDs**: Backend assigns unique sequential order IDs
-- **Dual Storage**: Orders saved to PostgreSQL database AND CSV file simultaneously
-- **Database Fallback**: If database unavailable, gracefully falls back to CSV-only operation
-- **Real-time CSV Updates**: CSV file updated immediately for 3rd party delivery
-- **Pydantic Validation**: Type-safe order data validation
-- **Order Confirmation**: Detailed popup showing order summary and storage status
+### ✅ Location-Based Delivery Validation
+- GPS location checking
+- 10-mile radius validation from Johannesburg CBD
+- Integrated delivery address modal
+- Permission handling for location access
 
-### ✅ Task 2: Delivery Location Validation
-
-- **GPS Location Check**: Validates delivery eligibility based on distance from market
-- **South Africa Ready**: Configured for Johannesburg CBD coordinates (-26.2041° S, 28.0473° E)
-- **10-Mile Radius**: Alerts if delivery location exceeds 10 miles from market
-- **Integrated Flow**: Location validation required before order creation
-- **Permission Handling**: Proper location permission requests
-
-### CSV Structure
+## CSV Structure
 
 ```csv
 order_id,customer_id,product_name,quantity,total_price,order_time
@@ -37,7 +56,7 @@ order_id,customer_id,product_name,quantity,total_price,order_time
 2,1,Organic Bananas,3,15.75,2025-01-14T11:00:00
 ```
 
-### Database Schema
+## Database Schema
 
 ```sql
 CREATE TABLE orders (
@@ -48,14 +67,6 @@ CREATE TABLE orders (
     total_price REAL NOT NULL,
     order_time TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
-```
-
-### CSV Structure
-
-```csv
-order_id,customer_id,product_name,quantity,total_price,order_time
-1,1,Fresh Apples,5,25.0,2025-01-14T10:00:00
-2,1,Organic Bananas,3,15.75,2025-01-14T11:00:00
 ```
 
 ## Setup
@@ -187,10 +198,18 @@ curl "http://localhost:8000/orders/"
 │   ├── requirements.txt     # Python dependencies
 │   └── doordash_bulk_orders.csv # Order data storage
 ├── frontend/
-│   ├── App.js               # Main React Native app
+│   ├── App.js               # Main React Native app (modular)
+│   ├── components/          # Reusable UI components
+│   │   ├── CurrencyModal.js
+│   │   ├── DeliveryModal.js
+│   │   ├── DeliveryConfirmationModal.js
+│   │   └── OrderForm.js
 │   ├── contexts/            # React contexts for state management
 │   ├── hooks/               # Custom React hooks
+│   ├── utils/               # Utility functions
 │   └── package.json         # Node dependencies
+├── .github/                 # GitHub configuration
+├── .vscode/                 # VS Code settings
 └── README.md
 ```
 
